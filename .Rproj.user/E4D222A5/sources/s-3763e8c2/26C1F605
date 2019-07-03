@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1562164671273.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "26C1F605",
+    "lastKnownWriteTime" : 1562167231,
+    "last_content_update" : 1562167231893,
+    "path" : "~/my_packages/gStirling/R/gStirling.R",
+    "project_path" : "R/gStirling.R",
+    "properties" : {
+        "cursorPosition" : "12,22",
+        "scrollLine" : "6",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
