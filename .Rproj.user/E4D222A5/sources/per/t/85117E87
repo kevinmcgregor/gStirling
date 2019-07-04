@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1562173439418.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "579488666",
+    "id" : "85117E87",
+    "lastKnownWriteTime" : 1561980120,
+    "last_content_update" : 1561980120,
+    "path" : "/mnt/GREENWOOD_JBOD1/GREENWOOD_BACKUP/home/kevin.mcgregor/research/pitman_yor/bsampler/src/libstb/lib/stable.c",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "899,10",
+        "scrollLine" : "896"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "c"
+}

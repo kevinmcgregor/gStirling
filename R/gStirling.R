@@ -13,5 +13,5 @@ gStirling <- function(n, m, dsct) {
   if (dsct<0 | dsct>1)
     stop("dsct must be numeric and between 0 and 1")
 
-  .Call("gStirling_", as.integer(m), as.integer(n), dsct)
+  .Call("gStirling_", as.integer(n), as.integer(m), dsct)
 }
