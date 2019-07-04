@@ -1,7 +1,7 @@
 Package: gStirling
 Type: Package
 Title: Calculate Table of Generalized Stirling Numbers
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Author: Kevin McGregor
 Maintainer: Kevin McGregor <kevin.mcgregor@mail.mcgill.ca>
 Description: Calculates a table of the generalized Stirling numbers based on the stb C library by Wray Buntine.
