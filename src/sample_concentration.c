@@ -20,7 +20,7 @@ SEXP sampConc_(SEXP b_in, SEXP N, SEXP T, SEXP shape, SEXP scale, SEXP dsct) {
   scnt_int tempT = (scnt_int) INTEGER(T)[0];
 
   SEXP result = PROTECT(allocVector(REALSXP, 1));
-  REAL(result)[0] = sampleb(b, 1, sh, sc, &tempN, &tempT, d, rng, 1, 1);
+  REAL(result)[0] = sampleb(b, 1, sh, sc, &tempN, &tempT, d, rng, 5, 1);
   UNPROTECT(1);
   return result;
 }
