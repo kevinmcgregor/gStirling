@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-sampConc <- function(conc, n, tab, p.shape, p.scale, dsct) {
+sampConc <- function(conc, n, tab, p.shape, p.scale, dsct, iter) {
   .Call("sampConc_", as.double(conc), as.integer(n), as.integer(tab),
-        as.double(p.shape), as.double(p.scale), dsct)
+        as.double(p.shape), as.double(p.scale), dsct, as.integer(iter))
 }
