@@ -8,10 +8,11 @@
 #include "srng.h"
 #include "lgamma.h"
 
-SEXP sampDsct_(SEXP a_in, SEXP n_sp, SEXP T, SEXP sp_c, SEXP n_s_tab, SEXP conc) {
+SEXP sampDsct_(SEXP a_in, SEXP n_sp, SEXP T, SEXP sp_c, SEXP n_s_tab, SEXP conc, SEXP iter) {
   double a = REAL(a_in)[0];
   int n_s = INTEGER(n_sp)[0];
   double c = REAL(conc)[0];
+  int itr = INTEGER(iter)[0];
 
   rngp_t rng = NULL;
 
@@ -30,7 +31,7 @@ SEXP sampDsct_(SEXP a_in, SEXP n_sp, SEXP T, SEXP sp_c, SEXP n_s_tab, SEXP conc)
   scnt_int tempT = (scnt_int) INTEGER(T)[0];
 
   SEXP result = PROTECT(allocVector(REALSXP, 1));
-  REAL(result)[0] = samplea(a, 1, &n_s, &tempT, &atn, &att, NULL, &c, rng, 1, 1);
+  REAL(result)[0] = samplea(a, 1, &n_s, &tempT, &atn, &att, NULL, &c, rng, itr, 1);
   UNPROTECT(1);
   return result;
 }
