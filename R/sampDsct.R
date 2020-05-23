@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-sampDsct <- function(dsct, n.sp, t.tab, sp.c, n.s.tab, conc) {
+sampDsct <- function(dsct, n.sp, t.tab, sp.c, n.s.tab, conc, iter=1) {
   .Call("sampDsct_", as.double(dsct), as.integer(n.sp), as.integer(t.tab),
-        as.integer(sp.c), as.integer(n.s.tab), as.double(conc))
+        as.integer(sp.c), as.integer(n.s.tab), as.double(conc), as.integer(iter))
 }
