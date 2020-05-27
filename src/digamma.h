@@ -22,7 +22,7 @@
  *  But it also disables digammaInv() which
  *  uses a Newton-Raphson step.
  */
-#define LS_NOPOLYGAMMA
+//#define LS_NOPOLYGAMMA
 /*
  *  Leaving this undefined means we use the library functions grabbed
  *  from the Mathlib and under GPL.  This makes the code self
