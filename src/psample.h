@@ -34,7 +34,7 @@
  *            then you must use ARS since the slice
  *            sampler requires the use of digammaInv()
  */
-#define PSAMPLE_ARS
+//#define PSAMPLE_ARS
 #ifdef PSAMPLE_ARS
 #include "arms.h"
 #else
