@@ -55,7 +55,7 @@ int SliceSimple(double *xp,      /*  input and output result */
  *    bounds on concentration, b
  *    NB.   slight problem, usually b>-a !!
  */
-#define B_MIN 0.01
+#define B_MIN 0.00001
 #define B_MAX 2000
 
 /*
