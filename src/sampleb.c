@@ -1,9 +1,9 @@
 /*
  * Sampling concentration parameter for Pitman-Yor using Slice sampler
- * Copyright (C) 2012 Wray Buntine 
+ * Copyright (C) 2012 Wray Buntine
  * All rights reserved.
  *
- * This Source Code Form is subject to the terms of the Mozilla 
+ * This Source Code Form is subject to the terms of the Mozilla
  * Public License, v. 2.0. If a copy of the MPL was not
  * distributed with this file, You can obtain one at
  *      http://mozilla.org/MPL/2.0/.
@@ -59,7 +59,7 @@ static double bmax(double x, BLData *mp) {
   x *= 1.1;
   while ( fabs((x-x_prime)/x)> B_ERROR && --loops>0 ) {
     double val = (mp->shape-1)*mp->apar/x - mp->Q*mp->apar;
-    for (i=0; i<mp->I; i++) 
+    for (i=0; i<mp->I; i++)
       val += digamma(mp->T[i]+x/mp->apar);
     x = x_prime;
     x_prime = mp->apar * digammaInv(val/mp->I);
@@ -76,9 +76,9 @@ static double bmax(double x, BLData *mp) {
  *    When a>0
  *        do sampling on posterior
  */
-double sampleb(double b_in, int I, double shape, double scale, 
+double sampleb(double b_in, int I, double shape, double scale,
 	       scnt_int *N, scnt_int *T, double apar,
-	       rngp_t rng, int loops, int verbose) {
+	       rngp_t rng, int loops, int verbose, double bmin, double bmax) {
   double Q;
   double q;
   double myb;
@@ -89,7 +89,7 @@ double sampleb(double b_in, int I, double shape, double scale,
   }
   Q = 1.0/scale;
   for (i=0; i<I; i++) {
-    if ( N[i]<=0 ) 
+    if ( N[i]<=0 )
       continue;
     q = rng_beta(rng, b_in, (int)N[i]);
     if ( q<=0 ) {
@@ -100,7 +100,7 @@ double sampleb(double b_in, int I, double shape, double scale,
   }
   if ( apar==0 ) {
     double Tsum = shape;
-    for (i=0; i<I; i++) 
+    for (i=0; i<I; i++)
       Tsum += T[i];
     if ( Tsum>400 ) {
       //   gamma is near enough a Gaussian with tiny std dev.
@@ -110,14 +110,14 @@ double sampleb(double b_in, int I, double shape, double scale,
     } else
       myb = rng_gamma(rng, Tsum);
     myb /= Q;
-    if ( myb<B_MIN )
-      myb = B_MIN;
-    if ( myb>B_MAX )
-      myb = B_MAX;
+    if ( myb<bmin )
+      myb = bmin;
+    if ( myb>bmax )
+      myb = bmax;
     if ( verbose>1 )
       fprintf(stderr,"Sample b ~ gamma(%lg,%lg) = %lf\n", Tsum, Q, myb);
   } else {
-    double initb[3] = {B_MIN,1,B_MAX};
+    double initb[3] = {bmin,1,bmax};
     BLData bld;
     bld.Q = Q;
     bld.I = I;
@@ -126,14 +126,14 @@ double sampleb(double b_in, int I, double shape, double scale,
     bld.shape = shape;
 #ifdef PSAMPLE_ARS
     initb[1] = b_in;
-    if ( fabs(initb[1]-B_MAX)/B_MAX<0.00001 ) {
-      initb[1] = B_MAX*0.999 + B_MIN*0.001;
+    if ( fabs(initb[1]-bmax)/bmax<0.00001 ) {
+      initb[1] = bmax*0.999 + bmin*0.001;
     }
-    if ( fabs(initb[1]-B_MIN)/B_MIN<0.00001 ) {
-      initb[1] = B_MIN*0.999 + B_MAX*0.001;
+    if ( fabs(initb[1]-bmin)/bmin<0.00001 ) {
+      initb[1] = bmin*0.999 + bmax*0.001;
     }
     arms_simple(3,  initb, initb+2, bterms, &bld, 0, initb+1, &myb);
-    if ( myb<B_MIN ||  myb>B_MAX ) {
+    if ( myb<bmin ||  myb>bmax ) {
       fprintf(stderr,"Arms_simple(bpar) returned value out of bounds\n");
       exit(1);
     }
@@ -146,7 +146,7 @@ double sampleb(double b_in, int I, double shape, double scale,
     myb = bmax(b_in, &bld);
     if ( verbose>1 )
       fprintf(stderr,"Max b (%lg,%lg) -> %lg\n", b_in, Q, myb);
-    initb[1] = B_MAX;
+    initb[1] = bmax;
     if ( SliceSimple(&myb, bterms, initb, rng, loops, &bld) ) {
       fprintf(stderr,"SliceSimple error\n");
       exit(1);
