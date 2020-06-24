@@ -81,7 +81,7 @@ double sampleb(double b_in,
 	       double shape, double scale,
 	       scnt_int *N, scnt_int *T,
 	       double apar,
-	       rngp_t rng, int loops, int verbose, double bmin, double bmax);
+	       rngp_t rng, int loops, int verbose, double b_min, double b_max);
 
 /*
  *    bounds on discount, a

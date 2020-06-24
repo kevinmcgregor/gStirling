@@ -78,7 +78,7 @@ static double bmax(double x, BLData *mp) {
  */
 double sampleb(double b_in, int I, double shape, double scale,
 	       scnt_int *N, scnt_int *T, double apar,
-	       rngp_t rng, int loops, int verbose, double bmin, double bmax) {
+	       rngp_t rng, int loops, int verbose, double b_min, double b_max) {
   double Q;
   double q;
   double myb;
@@ -110,14 +110,14 @@ double sampleb(double b_in, int I, double shape, double scale,
     } else
       myb = rng_gamma(rng, Tsum);
     myb /= Q;
-    if ( myb<bmin )
-      myb = bmin;
-    if ( myb>bmax )
-      myb = bmax;
+    if ( myb<b_min )
+      myb = b_min;
+    if ( myb>b_max )
+      myb = b_max;
     if ( verbose>1 )
       fprintf(stderr,"Sample b ~ gamma(%lg,%lg) = %lf\n", Tsum, Q, myb);
   } else {
-    double initb[3] = {bmin,1,bmax};
+    double initb[3] = {b_min,1,b_max};
     BLData bld;
     bld.Q = Q;
     bld.I = I;
@@ -126,14 +126,14 @@ double sampleb(double b_in, int I, double shape, double scale,
     bld.shape = shape;
 #ifdef PSAMPLE_ARS
     initb[1] = b_in;
-    if ( fabs(initb[1]-bmax)/bmax<0.00001 ) {
-      initb[1] = bmax*0.999 + bmin*0.001;
+    if ( fabs(initb[1]-b_max)/b_max<0.00001 ) {
+      initb[1] = b_max*0.999 + b_min*0.001;
     }
-    if ( fabs(initb[1]-bmin)/bmin<0.00001 ) {
-      initb[1] = bmin*0.999 + bmax*0.001;
+    if ( fabs(initb[1]-b_min)/b_min<0.00001 ) {
+      initb[1] = b_min*0.999 + b_max*0.001;
     }
     arms_simple(3,  initb, initb+2, bterms, &bld, 0, initb+1, &myb);
-    if ( myb<bmin ||  myb>bmax ) {
+    if ( myb<b_min ||  myb>b_max ) {
       fprintf(stderr,"Arms_simple(bpar) returned value out of bounds\n");
       exit(1);
     }
@@ -146,7 +146,7 @@ double sampleb(double b_in, int I, double shape, double scale,
     myb = bmax(b_in, &bld);
     if ( verbose>1 )
       fprintf(stderr,"Max b (%lg,%lg) -> %lg\n", b_in, Q, myb);
-    initb[1] = bmax;
+    initb[1] = b_max;
     if ( SliceSimple(&myb, bterms, initb, rng, loops, &bld) ) {
       fprintf(stderr,"SliceSimple error\n");
       exit(1);
