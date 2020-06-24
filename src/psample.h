@@ -1,9 +1,9 @@
 /*
  * Sampling hyperparameters
- * Copyright (C) 2012 Wray Buntine 
+ * Copyright (C) 2012 Wray Buntine
  * All rights reserved.
  *
- * This Source Code Form is subject to the terms of the Mozilla 
+ * This Source Code Form is subject to the terms of the Mozilla
  * Public License, v. 2.0. If a copy of the MPL was not
  * distributed with this file, You can obtain one at
  *      http://mozilla.org/MPL/2.0/.
@@ -43,10 +43,10 @@
  *    posterior must be unimodal since it fiddles bounds
  */
 int SliceSimple(double *xp,      /*  input and output result */
-		double (*post)(double, void *), 
+		double (*post)(double, void *),
 		double *bounds,  /*  left and right bound */
-		rngp_t rng, 
-		int loops,   /* loops of slice sampler before returning */ 
+		rngp_t rng,
+		int loops,   /* loops of slice sampler before returning */
 		void *pars   /* args for post()  */
 		);
 #endif
@@ -76,12 +76,12 @@ typedef uint16_t stcnt_int;
  *   loops : of the slice sampler before returning
  *   verbose : print more details if >1
  */
-double sampleb(double b_in, 
+double sampleb(double b_in,
 	       int I,
-	       double shape, double scale, 
-	       scnt_int *N, scnt_int *T, 
-	       double apar, 
-	       rngp_t rng, int loops, int verbose);
+	       double shape, double scale,
+	       scnt_int *N, scnt_int *T,
+	       double apar,
+	       rngp_t rng, int loops, int verbose, double bmin, double bmax);
 
 /*
  *    bounds on discount, a
@@ -101,7 +101,7 @@ double sampleb(double b_in,
  *      obtained using the callback getval(&n,&t,i,k)
  *  Creates its own S table internally
  */
-double samplea(double apar, 
+double samplea(double apar,
 	       int I, int *K,     /* dimensions */
 	       scnt_int *T,           /* topicwise totals of t[][] */
 	       scnt_int **n, stcnt_int **t, /* counts and tables */
