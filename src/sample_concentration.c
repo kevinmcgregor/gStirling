@@ -20,7 +20,7 @@ SEXP sampConc_(SEXP b_in, SEXP N, SEXP T, SEXP shape, SEXP scale, SEXP dsct, SEX
   scnt_int tempN = (scnt_int) INTEGER(N)[0];
   scnt_int tempT = (scnt_int) INTEGER(T)[0];
 
-  double b_min = 0;
+  double b_min = 0.00001;
   double b_max = 2000;
 
   SEXP result = PROTECT(allocVector(REALSXP, 1));
