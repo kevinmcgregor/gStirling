@@ -907,7 +907,7 @@ double S_V(stable_t *sp, unsigned n, unsigned m) {
 	  return (1.0-pow(n,-sp->a))/sp->a/(m-1);
 	else {
 	  double ln = log(n);
-	  return  ln/(m-1) * exp(gamma(1+(m-2)/ln)-gamma(1+(m-1)/ln));
+	  return  ln/(m-1) * exp(tgamma(1+(m-2)/ln)-tgamma(1+(m-1)/ln));
 	}
       }	  
       if ( (sp->flags & S_QUITONBOUND) ) {
@@ -1062,7 +1062,7 @@ double S_asympt(stable_t *sp, unsigned n, unsigned m) {
      *   Hsien-Kuei Hwang, 2001
      */
     double ln = log(n);
-    return gamma(n) + (m-1)*log(ln) - gamma(m) - gamma(1+(m-1)/ln);
+    return tgamma(n) + (m-1)*log(ln) - tgamma(m) - tgamma(1+(m-1)/ln);
   } else {
     double prod = 0;
     double la1 = lgamma(1.0-sp->a);
