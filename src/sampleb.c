@@ -94,7 +94,7 @@ double sampleb(double b_in, int I, double shape, double scale,
     q = rng_beta(rng, b_in, (int)N[i]);
     if ( q<=0 ) {
 	// If illegal value of q... just set it to small positive number to keep from crashing
-	q = 0.0001;
+	q = 0.001;
       fprintf(stderr,"Illegal q in sampleb(b=%lf)\n", b_in);
 	fprintf(stderr,"N[i]=%d\n", N[i]);
       fprintf(stderr,"(int)N[i]=%d\n", (int)N[i]);
