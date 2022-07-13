@@ -241,7 +241,7 @@ gsl_rng_gamma (const double a)
   if (a < 1)
     {
       double u = rng_uniform_pos ();
-    if (a>0.01) {
+    if (a>0.1) {
       return gsl_rng_gamma (1.0 + a) * pow (u, 1.0 / a);
     } else {
       // If a is small, then just return 0 to keep from crashing
