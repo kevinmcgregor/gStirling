@@ -80,7 +80,7 @@ double sampleb(double b_in, int I, double shape, double scale,
 	       scnt_int *N, scnt_int *T, double apar,
 	       rngp_t rng, int loops, int verbose, double b_min, double b_max) {
 	
-	if (b_in<=0.001) {fprintf(stderr, "here sampleb()\n")}
+	if (b_in<=0.001) {fprintf(stderr, "here sampleb()\n");}
 	
   double Q;
   double q;
