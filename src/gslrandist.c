@@ -238,7 +238,7 @@ gsl_rng_gamma (const double a)
 {
   /* assume a > 0 */
   
-  if (a<=0.001) {fprintf(stderr, "here gls_rng_gamma()\n")}
+  if (a<=0.001) {fprintf(stderr, "here gls_rng_gamma()\n");}
 
   if (a < 1)
     {
