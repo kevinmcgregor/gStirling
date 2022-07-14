@@ -239,7 +239,7 @@ gsl_rng_gamma (const double a)
 {
   /* assume a > 0 */
   
-  if (a<=0.001) {fprintf(stderr, "here gls_rng_gamma()\n");}
+  //if (a<=0.001) {fprintf(stderr, "here gls_rng_gamma()\n");}
 
   if (a < 1)
     {
@@ -247,7 +247,7 @@ gsl_rng_gamma (const double a)
     if (a>0.1) {
       return gsl_rng_gamma (1.0 + a) * pow (u, 1.0 / a);
     } else {
-      // If a is small, then just return 0 to keep from crashing
+      // If a is small, then just return 0
       return 0;
     }
     }
