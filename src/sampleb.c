@@ -151,6 +151,10 @@ double sampleb(double b_in, int I, double shape, double scale,
      *   otherwise the slice sampler behaves poorly
      */
     myb = bmax(b_in, &bld);
+    // If max of b is greater than b_max, then set it to b_max so the slice sampler doesn't crash
+    if (myb > b_max) {
+	myb = b_max;
+    }
     if ( verbose>1 )
       fprintf(stderr,"Max b (%lg,%lg) -> %lg\n", b_in, Q, myb);
     initb[1] = b_max;
