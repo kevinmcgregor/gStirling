@@ -80,7 +80,7 @@ double sampleb(double b_in, int I, double shape, double scale,
 	       scnt_int *N, scnt_int *T, double apar,
 	       rngp_t rng, int loops, int verbose, double b_min, double b_max) {
 	
-	if (b_in<=0.001) {fprintf(stderr, "here sampleb()\n");}
+	//if (b_in<=0.001) {fprintf(stderr, "here sampleb()\n");}
 	
   double Q;
   double q;
@@ -98,9 +98,9 @@ double sampleb(double b_in, int I, double shape, double scale,
     if ( q<=0 ) {
 	// If illegal value of q... just set it to small positive number to keep from crashing
 	q = 0.01;
-      fprintf(stderr,"Illegal q in sampleb(b=%lf)\n", b_in);
-	fprintf(stderr,"N[i]=%d\n", N[i]);
-      fprintf(stderr,"(int)N[i]=%d\n", (int)N[i]);
+      //fprintf(stderr,"Illegal q in sampleb(b=%lf)\n", b_in);
+	//fprintf(stderr,"N[i]=%d\n", N[i]);
+      //fprintf(stderr,"(int)N[i]=%d\n", (int)N[i]);
       //exit(1);
     }
     Q -= log(q);
